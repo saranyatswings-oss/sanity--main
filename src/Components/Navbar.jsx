@@ -60,28 +60,12 @@ export default function Navbar() {
     };
   }, [desktopOpen]);
 
+
+  
+
   useEffect(() => {
     let ticking = false;
     const SENSITIVITY = 6; 
-    const IDLE_HIDE_MS = 120; 
-    const idleTimer = { current: null };
-
-    const clearIdle = () => {
-      if (idleTimer.current) {
-        window.clearTimeout(idleTimer.current);
-        idleTimer.current = null;
-      }
-    };
-
-    const scheduleHide = () => {
-      clearIdle();
-     
-      idleTimer.current = window.setTimeout(() => {
-      
-        if (window.scrollY > 10) setPosition('off-top');
-        idleTimer.current = null;
-      }, IDLE_HIDE_MS);
-    };
 
     const onScroll = () => {
       const current = window.scrollY;
@@ -90,23 +74,22 @@ export default function Navbar() {
         window.requestAnimationFrame(() => {
           const delta = current - lastScroll.current;
 
+          // 1. At the very top of the page
           if (current <= 10) {
-          
             setPosition('onscreen');
             setScrolled(false);
-            clearIdle();
           } else {
             setScrolled(true);
           
+            // 2. Scrolling down
             if (delta > SENSITIVITY) {
-             
-              setPosition('off-top');
-              clearIdle();
-            } else if (delta < -SENSITIVITY) {
-            
-              setPosition('onscreen');
-            
-              scheduleHide();
+              setPosition('off-top'); 
+            } 
+            // 3. Scrolling up
+            else if (delta < -SENSITIVITY) {
+              setPosition('onscreen'); 
+              // Notice: scheduleHide() is gone! 
+              // The nav will now stay on screen until they scroll down.
             }
           }
 
@@ -123,7 +106,6 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
 
   useEffect(() => {
     if (typeof window === "undefined") return;

@@ -50,3 +50,37 @@
   box-sizing: border-box;
       font-family: 'graphik',sans-serif;
 }
+
+
+:root {
+ -webkit-link: #fff !important;  
+}
+
+/* Tooltip styles used by the global tooltip script in App.js */
+.custom-tooltip{
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  z-index: 9999;
+  transform: translate3d(0,0,0);
+}
+.custom-tooltip .tooltip-text{
+  background: rgba(255,255,255,0.98);
+  color: #111;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(12,12,12,0.08);
+  font-size: 13px;
+  font-weight: 400;
+  text-transform:none;
+  display: inline-block;
+}
+.custom-tooltip .tooltip-text .char{
+  display:inline-block;
+  transform: translateY(8px);
+  opacity: 0;
+  white-space: pre;
+}

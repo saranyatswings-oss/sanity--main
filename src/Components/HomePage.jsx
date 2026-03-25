@@ -547,7 +547,7 @@ useEffect(() => {
 
 
     {/* full siz video */}
-<section className="full section">
+<section className="full section" data-text="wings Exclusive Showreel 2025">
   {data.hero?.video?.asset?.url && (
     <video  autoPlay muted loop playsInline className="hero-video">
       <source src={data.hero.video.asset.url} type="video/mp4" />
@@ -585,6 +585,7 @@ useEffect(() => {
       <div
         key={project._id}
         className={`project-card ${isFullWidth ? "full-width" : "half-width"}`}
+        data-text={project.title}
       >
         {/* MEDIA RENDERING */}
         {project.media?.mediaType === "image" && project.media.image && (
@@ -733,13 +734,14 @@ useEffect(() => {
       <h2 className="news-title">Design, tech & people are things we notice, question and occasionally obsessover. Here’s where we unpack them.</h2>
     </div>
 
-    <div className="news-grid">
+    <div className="news-grid"  >
 
       {insights.map((item) => (
         <a
           key={item._id}
           href={`/insight/${item.slug.current}`}
           className="news-card"
+          data-text="Read"
         >
 
           {item.featuredImage && (

@@ -124,8 +124,8 @@ useEffect(() => {
       <Navbar />
 
       {/* HERO */}
-      <section className="heroabout">
-        <div className="titlewrap">
+      <section className="heroabout"data-text="This is tooltip text">
+        <div className="titlewrap" data-text="This is tooltip text">
           <h1 className="herotitle">{data.heroTitle}</h1>
         </div>
         <p>{data.heroDescription}</p>
@@ -202,10 +202,10 @@ useEffect(() => {
       {/* CULTURE */}
       <section className="culture-section">
         <div className="culture-block">
-          <div className="culture-cards">
+          <div className="culture-cards" >
             {data?.cultureSection?.cards?.length > 0 ? (
               data.cultureSection.cards.map((card, index) => (
-                <div className="culture-card" key={index}>
+                <div className="culture-card" data-text="This is tooltip text" key={index}>
                   <div className="card-content">
                     <div className="text-wrap">
                       <h3 className="card-title">{card.title}</h3>
